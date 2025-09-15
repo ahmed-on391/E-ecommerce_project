@@ -13,7 +13,17 @@ class HomeController extends Controller
     {
         return view('admin.index');
     }
+#---------------------------------------------------------------------------
 
+
+
+    public function home()
+    {
+        return view('home.index');
+    }
+
+
+    #---------------------------------------------------------------------------
     /**
      * Show the form for creating a new resource.
      */
