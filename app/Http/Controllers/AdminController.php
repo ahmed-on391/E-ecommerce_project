@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class AdminController extends Controller
 {
@@ -11,7 +12,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return 'ahmed';
+        $categories = Category::all();
+        return view('admin.category', compact('categories'));
     }
 
     /**
@@ -27,7 +29,13 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category;
+        $category->category_name= $request->name;
+        $category->save();
+        
+                flash()->success('Product created successfully!');
+
+        return redirect()->back();
     }
 
     /**
@@ -43,7 +51,8 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view('admin.edit_category', compact('category'));
     }
 
     /**
@@ -51,7 +60,13 @@ class AdminController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = Category::find($id);
+        if($category) {
+            $category->category_name = $request->name;
+            $category->save();
+            flash()->success('تم تحديث الفئة بنجاح!');
+        }
+        return redirect()->route('view_category');
     }
 
     /**
@@ -59,6 +74,11 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::find($id);
+        if($category) {
+            $category->delete();
+            flash()->success('تم حذف الفئة بنجاح!');
+        }
+        return redirect()->back();
     }
 }
