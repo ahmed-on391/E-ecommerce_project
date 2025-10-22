@@ -9,14 +9,14 @@ use App\Http\Controllers\HomeController;
 //     return view('welcome');
 // });
 
-
+//الـ Route يربط رابط الويب بالـ Controller وبدوره يرجّع View.
 Route::get('/', [HomeController::class, 'home']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auArab. And and. At Coda got the headache, albums and coding. Got an adapter before it is going to workout. So so right now. Right. Now this is. I. I. But. I. Command. Command bombardment. Command. I am. I. Well. Mean. Vatika. Java. Lola Lamberti. Allah. Notebook. I. Advil. Atomic. Atomic. Atomic. Coda. Add product. th')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -28,7 +28,7 @@ Route::get('admin/dashboard', [HomeController::class, 'index'])->name('admin.das
 
 
 
-Route::get('view_category', [AdminController::class, 'index'])->name('view_category')->middleware('auth', 'admin');
+Route::get('view_category', action: [AdminController::class, 'index'])->name('view_category')->middleware('auth', 'admin');
 
 Route::post('add_category', [AdminController::class, 'store'])->name('add_category')->middleware('auth', 'admin');
 
@@ -37,3 +37,6 @@ Route::delete('delete_category/{id}', [AdminController::class, 'destroy'])->name
 Route::get('edit_category/{id}', [AdminController::class, 'edit'])->name('edit_category')->middleware('auth', 'admin');
 
 Route::put('update_category/{id}', [AdminController::class, 'update'])->name('update_category')->middleware('auth', 'admin');
+
+
+Route::get('add_product', [AdminController::class, 'add_product'])->middleware('auth', 'admin');

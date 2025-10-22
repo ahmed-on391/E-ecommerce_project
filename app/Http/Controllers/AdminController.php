@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 
 class AdminController extends Controller
 {
@@ -80,5 +81,10 @@ class AdminController extends Controller
             flash()->success('تم حذف الفئة بنجاح!');
         }
         return redirect()->back();
+    }
+
+    public function add_product(Request $request)
+    {
+        return view('admin.add_product');
     }
 }
