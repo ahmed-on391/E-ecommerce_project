@@ -40,3 +40,6 @@ Route::put('update_category/{id}', [AdminController::class, 'update'])->name('up
 
 
 Route::get('add_product', [AdminController::class, 'add_product'])->middleware('auth', 'admin');
+
+Route::post('upload_product', [AdminController::class, 'upload_product'])->middleware('auth', 'admin');
+
