@@ -100,7 +100,78 @@ class AdminController extends Controller
         $data ->quantity = $request->qty;
         $data ->category = $request->category;
 
+        $image = $request->image;
+
+        if($image)
+        {
+            $imagename = time().'.'.$image->getClientOriginalExtension();
+            $request->image->move('products', $imagename);
+            $data ->image = $imagename;
+            flash()->success('تم رفع الملفات بنجاح!');
+
+        }
+
         $data ->save();
         return redirect()->back();
+    }
+
+    public function view_product()
+    {
+        $products = Product::paginate(5);
+        return view('admin.view_product', compact('products'));
+    }
+
+    public function delete_product($id)
+    {
+        $product = Product::find($id);
+
+        $imagePath = public_path('products/' . $product->image);
+        if (file_exists($imagePath)) {
+            unlink($imagePath); 
+        }
+
+        if($product) {
+            $product->delete();
+            flash()->success('تم حذف المنتج بنجاح!');
+        }
+        return redirect()->back();
+    }
+
+    public function update_product($id)   
+    {
+        $product = Product::find($id);
+        $categories = Category::all();
+        return view('admin.update_product', compact('product', 'categories'));
+    }
+
+    public function edit_product(Request $request, $id)
+    {
+        $product = Product::find($id);
+        if($product) {
+            $product->title = request('title');
+            $product->description = request('description');
+            $product->price = request('price');
+            $product->quantity = request('qty');
+            $product->category = request('category');
+
+            $image = request()->file('image');
+
+            if($image)
+            {
+                $imagePath = public_path('products/' . $product->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath); 
+                }
+
+                $imagename = time().'.'.$image->getClientOriginalExtension();
+                request()->file('image')->move('products', $imagename);
+                $product->image = $imagename;
+            }
+
+            $product->save();
+            flash()->success('تم تحديث المنتج بنجاح!');
+        }
+        return redirect('view_product');// يسطا خد بالك منها جدا
+        
     }
 }
