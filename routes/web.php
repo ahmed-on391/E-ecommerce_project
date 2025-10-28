@@ -53,3 +53,4 @@ Route::get('update_product/{id}', [AdminController::class, 'update_product'])->m
 Route::post('edit_product/{id}', [AdminController::class, 'edit_product'])->middleware('auth', 'admin');
 
 
+Route::get('view_product', [AdminController::class, 'view_product'])->name('view_product')->middleware('auth', 'admin');
