@@ -54,3 +54,6 @@ Route::post('edit_product/{id}', [AdminController::class, 'edit_product'])->midd
 
 
 Route::get('view_product', [AdminController::class, 'view_product'])->name('view_product')->middleware('auth', 'admin');
+
+
+Route::get('product_search', [AdminController::class, 'product_search'])->middleware('auth', 'admin');

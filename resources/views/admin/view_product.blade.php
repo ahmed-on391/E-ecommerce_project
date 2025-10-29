@@ -16,7 +16,30 @@
             color: #00b4d8;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+        }
+
+        .search-box {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .search-box input[type="text"] {
+            width: 60%;
+            max-width: 400px;
+            padding: 10px 15px;
+            border: 1px solid #555;
+            border-radius: 8px;
+            background: #222529;
+            color: #fff;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .search-box input[type="text"]:focus {
+            border-color: #00b4d8;
+            box-shadow: 0 0 8px rgba(0,180,216,0.4);
+            outline: none;
         }
 
         .table-container {
@@ -25,6 +48,7 @@
             padding: 25px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             margin-bottom: 30px;
+            overflow-x: auto;
         }
 
         table {
@@ -116,6 +140,12 @@
             background-color: #0091b2;
             color: #fff;
         }
+
+        @media (max-width: 768px) {
+            .search-box input[type="text"] {
+                width: 90%;
+            }
+        }
     </style>
 </head>
 
@@ -127,6 +157,13 @@
         <div class="page-header">
             <div class="container-fluid">
                 <h2>All Products</h2>
+
+                <!-- 🔍 Search Box -->
+                <div class="search-box">
+                    <form action="{{ url('product_search') }}" method="GET">
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Search for products...">
+                    </form>
+                </div>
 
                 <div class="table-container">
                     <table>
@@ -161,10 +198,8 @@
                                     </td>
                                     <td>
                                         <a href="{{ url('update_product', $product->id) }}" class="btn btn-edit">Edit</a>
-                                        {{-- <a href="{{ url('delete_product', $product->id) }}" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this product?')">Delete</a> --}}
-
                                         <form action="{{ url('delete_product', $product->id) }}" method="POST" class="d-inline delete-form">
-                                                @csrf
+                                            @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-delete">Delete</button>
                                         </form>
@@ -179,7 +214,6 @@
                     </table>
                 </div>
 
-                {{-- Pagination --}}
                 <div>
                     {{ $products->links('pagination::bootstrap-4') }}
                 </div>
@@ -187,8 +221,7 @@
         </div>
     </div>
 
-    
-    <!-- ✅ SweetAlert لحذف الفئة -->
+    <!-- ✅ SweetAlert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.querySelectorAll('.delete-form').forEach(form => {
