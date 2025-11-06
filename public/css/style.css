@@ -852,5 +852,15 @@ a:focus {
   color: #cbc9c9;
 }
 
+/* أفضل طريقة: مسافة متساوية بين عناصر الuser_option */
+.user_option {
+  display: flex;      /* موجود عندك أصلاً */
+  align-items: center;/* موجود عندك أصلاً */
+  gap: 16px;          /* المسافة المطلوبة بين العناصر */
+}
+
+
+
+
 /* end footer section*/
 /*# sourceMappingURL=style.css.map */

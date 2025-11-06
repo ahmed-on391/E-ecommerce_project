@@ -13,7 +13,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'home']);
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('home.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auArab. And and. At Coda got the headache, albums and coding. Got an adapter before it is going to workout. So so right now. Right. Now this is. I. I. But. I. Command. Command bombardment. Command. I am. I. Well. Mean. Vatika. Java. Lola Lamberti. Allah. Notebook. I. Advil. Atomic. Atomic. Atomic. Coda. Add product. th')->group(function () {
