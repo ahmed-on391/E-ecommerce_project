@@ -859,6 +859,99 @@ a:focus {
   gap: 16px;          /* المسافة المطلوبة بين العناصر */
 }
 
+.shop_section {
+  padding: 70px 0;
+  background: #f5f6fa;
+}
+
+.heading_container h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.heading_container p {
+  color: #666;
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+.product-box {
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.product-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.product-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-img img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-box:hover .product-img img {
+  transform: scale(1.07);
+}
+
+.badge-new {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: white;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.product-info {
+  padding: 15px;
+}
+
+.product-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 10px 0;
+  color: #333;
+}
+
+.product-price {
+  color: #007bff;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.btn-details {
+  display: inline-block;
+  background: linear-gradient(135deg, #007bff, #00a8ff);
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-details:hover {
+  background: linear-gradient(135deg, #0062cc, #007bff);
+  transform: scale(1.05);
+}
+
 
 
 

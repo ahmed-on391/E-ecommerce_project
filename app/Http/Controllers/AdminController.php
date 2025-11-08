@@ -121,21 +121,27 @@ class AdminController extends Controller
         return view('admin.view_product', compact('products'));
     }
 
-    public function delete_product($id)
-    {
-        $product = Product::find($id);
+   public function delete_product($id)
+{
+    $product = Product::find($id);
 
+    if ($product) {
         $imagePath = public_path('products/' . $product->image);
-        if (file_exists($imagePath)) {
-            unlink($imagePath); 
+
+        // تأكد إن الصورة موجودة فعلاً وإنها ملف مش مجلد
+        if (!empty($product->image) && file_exists($imagePath) && is_file($imagePath)) {
+            unlink($imagePath);
         }
 
-        if($product) {
-            $product->delete();
-            flash()->success('تم حذف المنتج بنجاح!');
-        }
-        return redirect()->back();
+        $product->delete();
+        flash()->success('تم حذف المنتج بنجاح!');
+    } else {
+        flash()->error('المنتج غير موجود!');
     }
+
+    return redirect()->back();
+}
+
 
     public function update_product($id)   
     {

@@ -16,6 +16,10 @@ Route::get('/dashboard', function () {
     return view('home.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'home'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
 Route::middleware('auArab. And and. At Coda got the headache, albums and coding. Got an adapter before it is going to workout. So so right now. Right. Now this is. I. I. But. I. Command. Command bombardment. Command. I am. I. Well. Mean. Vatika. Java. Lola Lamberti. Allah. Notebook. I. Advil. Atomic. Atomic. Atomic. Coda. Add product. th')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -57,3 +61,6 @@ Route::get('view_product', [AdminController::class, 'view_product'])->name('view
 
 
 Route::get('product_search', [AdminController::class, 'product_search'])->middleware('auth', 'admin');
+
+
+Route::get('product_details/{id}', [HomeController::class, 'product_details'])->middleware('auth');

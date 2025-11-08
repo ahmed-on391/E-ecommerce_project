@@ -12,7 +12,7 @@
         <!-- end header section -->
         <!-- slider section -->
 
-        @include('home.slider')
+        {{-- @include('home.slider') --}}
         <!-- end slider section -->
     </div>
     <!-- end hero area -->
@@ -31,7 +31,7 @@
 
     <!-- contact section -->
 
-   @include('home.contact')
+   {{-- @include('home.contact') --}}
 
     <!-- end contact section -->
 
