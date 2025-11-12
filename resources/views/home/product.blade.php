@@ -1,3 +1,4 @@
+
 <section class="shop_section layout_padding">
   <div class="container">
     <div class="heading_container heading_center mb-5">
@@ -14,12 +15,18 @@
             <span class="badge-new">New</span>
           </div>
 
-          <div class="product-info">
+          <div class="product-info text-center">
             <h5 class="product-title">{{ $products->title }}</h5>
-            <p class="product-price">{{ $products->price }} EGP</p>
-            <a href="{{ url('product_details', $products->id) }}" class="btn btn-details">
-              View Details
-            </a>
+            <p class="product-price text-danger fw-bold">{{ $products->price }} EGP</p>
+
+            <div class="d-flex justify-content-center gap-2">
+              <a href="{{ url('product_details', $products->id) }}" class="btn btn-outline-primary btn-sm">
+                View Details
+              </a>
+              <a href="{{ url('add_cart', $products->id) }}" class="btn btn-success btn-sm">
+                🛒 Add to Cart
+              </a>
+            </div>
           </div>
         </div>
       </div>

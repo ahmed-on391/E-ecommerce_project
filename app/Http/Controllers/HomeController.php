@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -81,4 +83,48 @@ class HomeController extends Controller
         $data = Product::find($id);
         return view('home.product_details', compact('data'));
     }
+     
+    // public function add_cart($id)
+    // {
+    //     $product_id = $id;
+
+    //     $user = Auth::user();
+    //     $user_id = $user->id;
+    //     $data = new Cart;
+    //     $data->user_id = $user_id;
+    //     $data->product_id = $product_id;
+    //     $data->save();  
+
+    //             flash()->success('Product created successfully!');
+
+    //     return redirect()->back();
+    // }
+
+    public function add_cart($id)
+{
+    $user = Auth::user();
+
+    // لو المستخدم مش مسجل دخول
+    if (!$user) {
+        return redirect()->route('login')->with('error', 'من فضلك سجل الدخول أولاً 🛒');
+    }
+
+    // التحقق لو المنتج مضاف بالفعل
+    $existing = Cart::where('user_id', $user->id)
+                    ->where('product_id', $id)
+                    ->first();
+
+    if ($existing) {
+        return redirect()->back()->with('info', 'المنتج موجود بالفعل في العربة 😊');
+    }
+
+    // إضافة المنتج
+    $cart = new Cart();
+    $cart->user_id = $user->id;
+    $cart->product_id = $id;
+    $cart->save();
+
+    return redirect()->back()->with('success', 'تم إضافة المنتج إلى العربة بنجاح 🛍️');
+}
+
 }
