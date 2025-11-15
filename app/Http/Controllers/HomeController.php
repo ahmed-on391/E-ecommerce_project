@@ -22,11 +22,23 @@ class HomeController extends Controller
 
 
 
-    public function home()
-    {
-        $product = Product::all();
-        return view('home.index' , compact('product'));
+   public function home()
+{
+    $product = Product::all();
+
+    $user = Auth::user();
+
+    // القيمة الافتراضية
+    $count = 0;
+
+    // لو اليوزر مسجّل دخول
+    if ($user) {
+        $count = Cart::where('user_id', $user->id)->count();
     }
+
+    return view('home.index', compact('product', 'count'));
+}
+
 
 
     #---------------------------------------------------------------------------
@@ -104,6 +116,11 @@ class HomeController extends Controller
 {
     $user = Auth::user();
 
+    
+
+
+
+
     // لو المستخدم مش مسجل دخول
     if (!$user) {
         return redirect()->route('login')->with('error', 'من فضلك سجل الدخول أولاً 🛒');
@@ -126,5 +143,23 @@ class HomeController extends Controller
 
     return redirect()->back()->with('success', 'تم إضافة المنتج إلى العربة بنجاح 🛍️');
 }
+
+    public function mycart()
+    {
+       if(Auth::id())
+       {
+        $user=Auth::user();
+        $userid=$user->id;
+        $count=Cart::where('user_id',$userid)->count();
+
+        $cart=Cart::where('user_id',$userid)->get();
+
+        return view('home.mycart',compact('count' , 'cart'));
+       }
+       else
+       {
+        return redirect('login');
+       }
+    }
 
 }

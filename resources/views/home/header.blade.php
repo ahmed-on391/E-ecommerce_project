@@ -59,7 +59,7 @@
                     </span>
                 </a>
 
-                <a href="{{url('/register')}}">
+                <a href="{{url('/register')}}">0
                     <i class="fa fa-vcard" aria-hidden="true"></i>
                     <span>
                         Register
@@ -69,8 +69,11 @@
 
             @endif
 
-                <a href="">
+                <a href="{{ url('mycart') }}">
                     <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+
+                    <span>
+                         {{$count}}
                 </a>
                 <form class="form-inline ">
                     <button class="btn nav_search-btn" type="submit">
