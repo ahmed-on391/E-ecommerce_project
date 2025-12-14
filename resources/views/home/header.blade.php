@@ -59,7 +59,7 @@
                     </span>
                 </a>
 
-                <a href="{{url('/register')}}">0
+                <a href="{{url('/register')}}">
                     <i class="fa fa-vcard" aria-hidden="true"></i>
                     <span>
                         Register

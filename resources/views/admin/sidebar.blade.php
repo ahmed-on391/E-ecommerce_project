@@ -23,8 +23,12 @@
                     <li><a href="#">Page</a></li>
                 </ul>
             </li>
+
+            <li><a href="{{ url('view_orders') }}"> <i class="icon-basket"></i> Order </a></li>
+
+
             {{-- <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>
-        </ul><span class="heading">Extras</span>
-        --}}
+        </ul><span class="heading">Extras</span> --}}
+       
         </ul>
     </nav>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 
 use App\Models\Cart;
+use App\Models\Order;
+
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -144,22 +146,83 @@ class HomeController extends Controller
     return redirect()->back()->with('success', 'تم إضافة المنتج إلى العربة بنجاح 🛍️');
 }
 
+    // public function mycart()
+    // {
+    //    if(Auth::id())
+    //    {
+    //     $user=Auth::user();
+    //     $userid=$user->id;
+    //     $count=Cart::where('user_id',$userid)->count();
+
+    //     $cart=Cart::where('user_id',$userid)->get();
+
+    //     return view('home.mycart',compact('count' , 'cart'));
+    //    }
+    //    else
+    //    {
+    //     return redirect('login');
+    //    }
+    // }
+
     public function mycart()
+{
+    if(Auth::id())
     {
-       if(Auth::id())
-       {
-        $user=Auth::user();
-        $userid=$user->id;
-        $count=Cart::where('user_id',$userid)->count();
+        $user = Auth::user();
+        $userid = $user->id;
 
-        $cart=Cart::where('user_id',$userid)->get();
+        $cart = Cart::where('user_id', $userid)->get();
+        $count = $cart->count();
 
-        return view('home.mycart',compact('count' , 'cart'));
-       }
-       else
-       {
-        return redirect('login');
-       }
+        // حساب إجمالي السلة
+        $total = $cart->sum(function($item){
+            return $item->product 
+                ? $item->product->price * ($item->quantity ?? 1)
+                : 0;
+        });
+
+        return view('home.mycart', compact('count', 'cart', 'total'));
     }
+    else
+    {
+        return redirect('login');
+    }
+}
+
+    public function confirm_order(Request $request)
+    {
+
+       $name = $request->name;
+       $phone = $request->phone;
+        $address = $request->address;
+        $userid = Auth::user()->id;
+        //هنا بقا المهم جدا 
+        $cart = Cart::where('user_id', $userid)->get();
+        foreach($cart as $carts)
+        {
+             $order = new Order();
+                $order->name = $name;
+                $order->phone = $phone;
+                $order->rec_address = $address;
+                $order->user_id = $carts->user_id;
+                $order->product_id = $carts->product_id;
+                $order->save();
+                
+            
+
+        }   
+
+        $cart_remove = Cart::where('user_id', $userid)->get();
+        foreach($cart_remove as $cart_removes)
+        {
+            $data = Cart::find($cart_removes->id);
+            
+            $data->delete();
+        }
+                return redirect()->back()->with('success', 'تم تأكيد الطلب بنجاح! شكراً لتسوقك معنا. 🚚🛒');
+
+        
+    }
+
 
 }

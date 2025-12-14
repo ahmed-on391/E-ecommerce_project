@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -187,4 +188,15 @@ class AdminController extends Controller
         $products = Product::where('title', 'LIKE', "%$search%")->paginate(5);
         return view('admin.view_product', compact('products'));
     }
+
+    
+        public function view_orders()
+        {
+            $orders = Order::with('product')->latest()->get();
+            return view('admin.orders', compact('orders'));
+        }
+    // public function view_orders()
+    // {
+    //     return view('admin.orders');
+    // }
 }
