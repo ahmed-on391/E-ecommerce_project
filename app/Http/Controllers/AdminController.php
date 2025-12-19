@@ -7,6 +7,9 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Order;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+
+
 class AdminController extends Controller
 {
     /**
@@ -199,4 +202,93 @@ class AdminController extends Controller
     // {
     //     return view('admin.orders');
     // }
+
+    public function on_the_way($id)
+    {
+        $order = Order::find($id);
+        if ($order) {
+            $order->status = 'on the way';
+            $order->save();
+            flash()->success('Order status updated to "on the way" successfully!');
+        } else {
+            flash()->error('Order not found!');
+        }
+        return redirect()->back();
+    }
+
+    public function delivered($id)
+    {
+        $order = Order::find($id);
+        if ($order) {
+            $order->status = 'delivered';
+            $order->save();
+            flash()->success('Order status updated to "delivered" successfully!');
+        } else {
+            flash()->error('Order not found!');
+        }
+        return redirect()->back();
+    }
+//  public function print_pdf($id)
+// {
+//     $order = Order::find($id);
+    
+//     // تأكد من المسار الصحيح للفولدر هنا
+//     $pdf = Pdf::loadView('admin.invoice', compact('order'));
+
+//     // stream بتفتح الـ PDF في المتصفح بدل ما تحمله فوراً
+//     return $pdf->stream('invoice_'.$order->id.'.pdf');
+// }
+
+public function print_pdf($id)
+{
+    $order = \App\Models\Order::with('product')->find($id);
+    if (!$order) return redirect()->back();
+
+    $arabic = new \ArPHP\I18N\Arabic();
+    $c = function($text) use ($arabic) { 
+        return $arabic->utf8Glyphs($text); 
+    };
+
+    // تجهيز صورة المنتج بصيغة Base64 (عشان تظهر 100%)
+    $imageData = null;
+    $imagePath = public_path('products/' . $order->product->image);
+    if ($order->product->image && file_exists($imagePath)) {
+        $type = pathinfo($imagePath, PATHINFO_EXTENSION);
+        $imgBinary = file_get_contents($imagePath);
+        $imageData = 'data:image/' . $type . ';base64,' . base64_encode($imgBinary);
+    }
+
+    $data = [
+        'order'         => $order,
+        'product_image' => $imageData,
+        'date'          => $order->created_at->format('Y-m-d'),
+        'invoice_title' => $c('فاتورة ضريبية'),
+        'store_name'    => 'MY-STORE',
+        'tax_no'        => '123-456-789',
+        'product_title' => $c($order->product->title ?? 'منتج'),
+        'name'          => $c($order->name ?? 'عميل كاش'),
+        'address'       => $c($order->address ?? 'غير مسجل'),
+        // العناوين (Labels)
+        'l_bill_to'     => $c('يُشحن إلى'),
+        'l_seller'      => $c('تفاصيل البائع'),
+        'l_description' => $c('الوصف'),
+        'l_unit_price'  => $c('سعر الوحدة'),
+        'l_qty'         => $c('الكمية'),
+        'l_total_row'   => $c('الإجمالي'),
+        'l_subtotal'    => $c('الإجمالي الفرعي'),
+        'l_grand_total' => $c('الإجمالي النهائي'),
+        'l_currency'    => $c('ج.م'),
+        'l_img_label'   => $c('الصورة'), // جهزناها هنا عشان متبوظش الـ Blade
+        'l_footer_note' => $c('هذه فاتورة إلكترونية صادرة عن النظام ولا تحتاج لختم'),
+        'l_invoice_no'  => $c('رقم الفاتورة:'),
+        'l_issue_date'  => $c('تاريخ الإصدار:'),
+    ];
+
+    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('admin.invoice', $data);
+    
+    // تفعيل الصور الخارجية (للـ QR Code)
+    $pdf->setOption(['isRemoteEnabled' => true, 'isHtml5ParserEnabled' => true]);
+
+    return $pdf->stream('Amazon_Invoice.pdf');
+}
 }
