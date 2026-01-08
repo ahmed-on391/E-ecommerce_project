@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Cart;
 use App\Models\Order;
+use Stripe;
+use Session;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,9 +20,15 @@ class HomeController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return view('admin.index');
-    }
+{
+    $user = User::where('usertype', 'user')->count();
+    $product = Product::count();
+    $orders = Order::count();
+    $delveried = Order::where('status', 'delivered')->count();
+
+    return view('admin.index', compact('user', 'product', 'orders' , 'delveried'));
+}
+
 #---------------------------------------------------------------------------
 
 
@@ -224,5 +233,93 @@ class HomeController extends Controller
         
     }
 
+    public function myorders()
+    {
+        if(Auth::id())
+        {
+            $user = Auth::user();
+            $userid = $user->id;
+
+            $orders = Order::where('user_id', $userid)->get();
+
+            return view('home.myorders', compact('orders'));
+        }
+        else
+        {
+            return redirect('login');
+        }
+    }
+
+   public function stripe($total) {
+    return view('home.stripe', compact('total'));
+}
+
+// public function stripePost(Request $request, $total) {
+
+//     Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+//     Stripe\Charge::create ([
+//             "amount" => $total * 100, // Stripe بيحسب بالقروش (Cent)
+//             "currency" => "egp",
+//             "source" => $request->stripeToken,
+//             "description" => "دفع مقابل طلب من متجر Giftos" 
+//     ]);
+
+//     // هنا بتكتب كود تحويل الكارت لطلب (Order) في قاعدة البيانات
+//     // ...
+
+//     Session::flash('success', 'تمت عملية الدفع بنجاح!');
+//     return redirect('/myorders');
+// }
+
+public function stripePost(Request $request, $total)
+{
+    // 1. إعداد Stripe
+    Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
+    try {
+        // 2. تنفيذ عملية الدفع
+        Stripe\Charge::create([
+            "amount" => $total * 100, // بالقروش
+            "currency" => "egp",
+            "source" => $request->stripeToken,
+            "description" => "دفع إلكتروني من: " . Auth::user()->name
+        ]);
+
+        // 3. إذا نجح الدفع، نبدأ عملية حفظ الطلب
+        $userid = Auth::user()->id;
+        
+        // جلب بيانات العربة
+        $cart = Cart::where('user_id', $userid)->get();
+
+        foreach($cart as $item)
+        {
+            $order = new Order();
+            
+            // البيانات اللي جاية من العميل (تأكد أن الأسماء مطابقة للـ Input في صفحة stripe)
+            $order->name = Auth::user()->name; // أو استقبلها من Request لو غيرتها
+            $order->phone = Auth::user()->phone;
+            $order->rec_address = Auth::user()->address;
+            
+            $order->user_id = $item->user_id;
+            $order->product_id = $item->product_id;
+            
+            // إضافة حالة الدفع لتمييزها عن الدفع عند الاستلام
+            $order->payment_status = 'paid'; 
+            $order->status = 'in progress'; 
+            
+            $order->save();
+        }
+
+        // 4. تفريغ العربة بعد نجاح العملية تماماً
+        Cart::where('user_id', $userid)->delete();
+
+        // 5. التوجيه لصفحة "طلباتي" مع رسالة نجاح شيك
+        return redirect('/myorders')->with('success', 'تمت عملية الدفع وتأكيد طلبك بنجاح! 🎉');
+
+    } catch (\Exception $e) {
+        // في حالة فشل الدفع (مثلاً الرصيد لا يكفي)
+        return redirect()->back()->with('error', 'عذراً، حدث خطأ أثناء الدفع: ' . $e->getMessage());
+    }}
 
 }

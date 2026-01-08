@@ -20,6 +20,10 @@ Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'home'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
+Route::get('/myorders', [App\Http\Controllers\HomeController::class, 'myorders'])
+    ->middleware(['auth', 'verified'])
+    ->name('myorders');
+
 Route::middleware('auArab. And and. At Coda got the headache, albums and coding. Got an adapter before it is going to workout. So so right now. Right. Now this is. I. I. But. I. Command. Command bombardment. Command. I am. I. Well. Mean. Vatika. Java. Lola Lamberti. Allah. Notebook. I. Advil. Atomic. Atomic. Atomic. Coda. Add product. th')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -79,7 +83,12 @@ Route::get('on_the_way/{id}', [AdminController::class, 'on_the_way'])->middlewar
 
 Route::get('delivered/{id}', [AdminController::class, 'delivered'])->middleware('auth', 'admin');
 
+//stripe payment gateway routes دفعة سترايب 
+// مسار عرض صفحة الدفع
+Route::get('stripe/{total}', [HomeController::class, 'stripe']);
 
+// مسار معالجة الدفع بعد كتابة بيانات الكارت
+Route::post('stripe/{total}', [HomeController::class, 'stripePost'])->name('stripe.post');
 
 Route::get('print_pdf/{id}', [AdminController::class, 'print_pdf'])->middleware('auth', 'admin');
 
