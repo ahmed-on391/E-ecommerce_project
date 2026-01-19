@@ -17,18 +17,7 @@
 ## 💎 العرض البصري (Visual Showcase)
 
 <div align="center">
-  <table border="0">
-    <tr>
-      <td>
-        <p align="center"><b>🖥️ لوحة الإدارة (Luxury Dark Mode)</b></p>
-        <img src="https://via.placeholder.com/450x250/0f111a/ffffff?text=Admin+Dashboard+Luxury+UI" width="450" style="border-radius:15px">
-      </td>
-      <td>
-        <p align="center"><b>🛍️ واجهة المتجر (Modern UX)</b></p>
-        <img src="https://via.placeholder.com/450x250/ffffff/db4566?text=Storefront+Grid+Preview" width="450" style="border-radius:15px">
-      </td>
-    </tr>
-  </table>
+
 </div>
 
 ---
