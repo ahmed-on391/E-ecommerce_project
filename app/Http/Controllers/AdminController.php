@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\Cart;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -125,31 +126,57 @@ class AdminController extends Controller
         return view('admin.view_product', compact('products'));
     }
 
-   public function delete_product($id)
+
+
+    public function delete_product($id)
 {
     $product = Product::find($id);
 
-    if ($product) {
-        $imagePath = public_path('products/' . $product->image);
-
-        // تأكد إن الصورة موجودة فعلاً وإنها ملف مش مجلد
-        if (!empty($product->image) && file_exists($imagePath) && is_file($imagePath)) {
-            unlink($imagePath);
-        }
-
-        $product->delete();
-        flash()->success('تم حذف المنتج بنجاح!');
-    } else {
+    if (!$product) {
         flash()->error('المنتج غير موجود!');
+        return redirect()->back();
     }
 
+    // 🟢 مسح المنتج من كل العربيات
+    Cart::where('product_id', $id)->delete();
+
+    // 🟢 مسح الصورة
+    $imagePath = public_path('products/' . $product->image);
+    if (!empty($product->image) && file_exists($imagePath)) {
+        unlink($imagePath);
+    }
+
+    // 🟢 مسح المنتج
+    $product->delete();
+
+    flash()->success('تم حذف المنتج بنجاح!');
     return redirect()->back();
 }
+//    public function delete_product($id)
+// {
+//     $product = Product::find($id);
+
+//     if ($product) {
+//         $imagePath = public_path('products/' . $product->image);
+
+//         // تأكد إن الصورة موجودة فعلاً وإنها ملف مش مجلد
+//         if (!empty($product->image) && file_exists($imagePath) && is_file($imagePath)) {
+//             unlink($imagePath);
+//         }
+
+//         $product->delete();
+//         flash()->success('تم حذف المنتج بنجاح!');
+//     } else {
+//         flash()->error('المنتج غير موجود!');
+//     }
+
+//     return redirect()->back();
+// }
 
 
-    public function update_product($id)   
+    public function update_product($slug)   
     {
-        $product = Product::find($id);
+        $product = Product::where('slug', $slug)->get()->first();
         $categories = Category::all();
         return view('admin.update_product', compact('product', 'categories'));
     }

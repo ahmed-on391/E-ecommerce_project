@@ -8,6 +8,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use Stripe;
 use Session;
+use App\Models\Category;
 
 use App\Models\Product;
 use App\Models\User;
@@ -322,4 +323,21 @@ public function stripePost(Request $request, $total)
         return redirect()->back()->with('error', 'عذراً، حدث خطأ أثناء الدفع: ' . $e->getMessage());
     }}
 
+
+  public function shop()
+{
+    $product = Product::paginate(9); // المنتجات
+    $categories = Category::all(); // لازم تجيب الأقسام عشان تظهر في الجنب
+    return view('home.shop', compact('product', 'categories'));
+}
+
+    public function why()
+    {
+        return view('home.why');
+    }
+
+    public function contact()
+    {
+        return view('home.contact');
+    }
 }

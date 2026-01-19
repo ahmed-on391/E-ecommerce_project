@@ -1,93 +1,107 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>إضافة منتج جديد</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product</title>
     @include('admin.css')
 
-    <!-- 🎨 Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         body {
-            background: #1e1f25;
-            font-family: 'Cairo', sans-serif;
-            color: #f1f1f1;
+            background: #0f111a; /* Dark Luxury Background */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #e2e8f0;
             margin: 0;
-            padding: 0;
         }
 
-        h2.page-title {
-            color: #00b4d8;
+        .page-title {
+            color: #fff;
             font-weight: 700;
             text-align: center;
-            margin: 30px 0;
-            letter-spacing: 1px;
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
 
-        /* 📦 صندوق النموذج */
+        /* ✨ Premium Form Card */
         .form-container {
-            max-width: 700px;
-            margin: 40px auto;
-            background: #2a2c31;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
+            max-width: 650px;
+            margin: 0 auto 60px;
+            background: #161b22;
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
         }
 
         .form-container:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            transform: translateY(-5px);
         }
 
         label {
             font-weight: 600;
-            display: block;
-            margin-bottom: 6px;
-            color: #ccc;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #444;
-            border-radius: 10px;
-            background: #1e1f25;
-            color: #fff;
-            margin-bottom: 18px;
-            font-size: 15px;
+            background: #0d1117 !important;
+            border: 1px solid #30363d !important;
+            color: #fff !important;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 0.95rem;
+            margin-bottom: 22px;
             transition: all 0.3s ease;
         }
 
         .form-control:focus {
-            border-color: #00b4d8;
-            box-shadow: 0 0 6px rgba(0, 180, 216, 0.4);
+            border-color: #00b4d8 !important;
+            box-shadow: 0 0 0 4px rgba(0, 180, 216, 0.15) !important;
             outline: none;
         }
 
-        .btn-primary {
-            background: #00b4d8;
-            color: #fff;
+        /* 🔘 Action Button */
+        .btn-submit {
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
             border: none;
-            padding: 12px;
-            border-radius: 10px;
+            padding: 16px;
+            font-weight: 700;
+            border-radius: 12px;
             width: 100%;
-            font-weight: 600;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 180, 216, 0.2);
         }
 
-        .btn-primary:hover {
-            background: #0091b2;
+        .btn-submit:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 12px 25px rgba(0, 180, 216, 0.4);
         }
 
-        /* ✅ Responsive */
+        /* Custom style for File input */
+        input[type="file"] {
+            padding: 10px;
+            line-height: 1;
+        }
+
         @media (max-width: 768px) {
-            .form-container {
-                width: 90%;
-                padding: 20px;
-            }
+            .form-container { width: 90%; padding: 25px; }
         }
     </style>
 </head>
@@ -98,57 +112,58 @@
 
     <div class="page-content">
         <div class="container-fluid">
-            <h2 class="page-title"><i data-lucide="package-plus" class="inline-block w-6 h-6"></i> إضافة منتج جديد</h2>
+            
+            <h2 class="page-title">
+                <i data-lucide="package-plus" style="color: #00b4d8"></i> Add New Product
+            </h2>
 
             <div class="form-container">
                 <form action="{{ url('upload_product') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    <div>
-                        <label><i data-lucide="type" class="inline-block w-5 h-5"></i> اسم المنتج</label>
-                        <input type="text" name="title" class="form-control" placeholder="أدخل اسم المنتج..." required>
+                    <div class="form-group">
+                        <label><i data-lucide="type" style="width:18px"></i> Product Title</label>
+                        <input type="text" name="title" class="form-control" placeholder="Enter product name..." required>
                     </div>
 
-                    <div>
-                        <label><i data-lucide="file-text" class="inline-block w-5 h-5"></i> الوصف</label>
-                        <textarea name="description" class="form-control" rows="3" placeholder="أدخل وصف المنتج..." required></textarea>
+                    <div class="form-group">
+                        <label><i data-lucide="file-text" style="width:18px"></i> Description</label>
+                        <textarea name="description" class="form-control" rows="3" placeholder="Describe the product details..." required></textarea>
                     </div>
 
-                    <div>
-                        <label><i data-lucide="dollar-sign" class="inline-block w-5 h-5"></i> السعر</label>
-                        <input type="number" name="price" class="form-control" placeholder="أدخل السعر..." step="0.01" required>
+                    <div class="form-group">
+                        <label><i data-lucide="dollar-sign" style="width:18px"></i> Price</label>
+                        <input type="number" name="price" class="form-control" placeholder="0.00" step="0.01" required>
                     </div>
 
-                    <div>
-                        <label><i data-lucide="hash" class="inline-block w-5 h-5"></i> الكمية</label>
-                        <input type="number" name="qty" class="form-control" placeholder="أدخل الكمية المتوفرة..." required>
+                    <div class="form-group">
+                        <label><i data-lucide="hash" style="width:18px"></i> Stock Quantity</label>
+                        <input type="number" name="qty" class="form-control" placeholder="Quantity available" required>
                     </div>
 
-                    <div>
-                        <label><i data-lucide="tag" class="inline-block w-5 h-5"></i> فئة المنتج</label>
+                    <div class="form-group">
+                        <label><i data-lucide="tag" style="width:18px"></i> Category</label>
                         <select name="category" class="form-control" required>
-                            <option disabled selected>-- اختر الفئة --</option>
+                            <option disabled selected>-- Select a Category --</option>
                             @foreach($category as $cat)
                                 <option value="{{ $cat->category_name }}">{{ $cat->category_name }}</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div>
-                        <label><i data-lucide="image" class="inline-block w-5 h-5"></i> صورة المنتج</label>
+                    <div class="form-group">
+                        <label><i data-lucide="image" style="width:18px"></i> Product Image</label>
                         <input type="file" name="image" class="form-control">
                     </div>
 
-                    <button type="submit" class="btn-primary">
-                        <i data-lucide="plus-circle" class="inline-block w-5 h-5"></i> إضافة المنتج
+                    <button type="submit" class="btn-submit">
+                        <i data-lucide="plus-circle"></i> Add Product Now
                     </button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('admincss/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('admincss/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script>

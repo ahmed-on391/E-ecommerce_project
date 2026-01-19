@@ -20,15 +20,13 @@
                 <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
                     <li><a href="{{url('add_product')}}">Add product</a></li>
                     <li><a href="{{ url('view_product') }}">view product</a></li>
-                    {{-- <li><a href="#">Page</a></li> --}}
                 </ul>
             </li>
 
             <li><a href="{{ url('view_orders') }}"> <i class="icon-basket"></i> Order </a></li>
 
 
-            {{-- <li><a href="login.html"> <i class="icon-logout"></i>Login page </a></li>
-        </ul><span class="heading">Extras</span> --}}
+     
        
         </ul>
     </nav>

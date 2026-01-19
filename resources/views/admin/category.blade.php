@@ -1,159 +1,177 @@
 <!DOCTYPE html>
-<html >
-
+<html>
 <head>
     @include('admin.css')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إدارة الفئات</title>
+    <title>Category Management</title>
 
-    <!-- 🎨 Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         body {
-            background: #1e1f25;
-            font-family: 'Cairo', sans-serif;
-            color: #f1f1f1;
+            background: #0f111a; /* أغمق وأفخم */
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: #e2e8f0;
             margin: 0;
-            padding: 0;
         }
 
-        h2.page-title {
-            color: #00b4d8;
+        .page-title {
+            color: #fff;
             font-weight: 700;
             text-align: center;
-            margin: 30px 0;
-            letter-spacing: 1px;
+            margin: 40px 0;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
         }
 
-        /* 🔹 إضافة فئة جديدة */
+        /* ✨ Advanced Glassmorphism Card */
         .form-section {
-            background: #2a2c31;
-            border-radius: 16px;
-            padding: 30px;
-            max-width: 600px;
+            background: #161b22;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 35px;
+            max-width: 650px;
             margin: 0 auto 50px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-section:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         }
 
         label {
             font-weight: 600;
-            color: #ccc;
-            margin-bottom: 8px;
-            display: block;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .form-control {
-            background: #1e1f25;
-            border: 1px solid #444;
-            color: #fff;
-            border-radius: 10px;
-            padding: 12px;
-            width: 100%;
+            background: #0d1117 !important;
+            border: 1px solid #30363d !important;
+            color: #fff !important;
+            border-radius: 12px;
+            padding: 14px;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .form-control:focus {
-            border-color: #00b4d8;
-            box-shadow: 0 0 8px rgba(0, 180, 216, 0.4);
+            border-color: #58a6ff !important;
+            box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.15) !important;
             outline: none;
         }
 
         .btn-primary {
-            background: #00b4d8;
+            background: linear-gradient(135deg, #00b4d8, #0077b6);
             border: none;
-            padding: 12px;
-            font-weight: 600;
-            border-radius: 10px;
-            width: 100%;
-            transition: background 0.3s ease;
+            padding: 14px;
+            font-weight: 700;
+            border-radius: 12px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
         }
 
         .btn-primary:hover {
-            background: #0087a3;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 180, 216, 0.4);
+            filter: brightness(1.1);
         }
 
-        /* 📋 جدول الفئات */
+        /* 📋 Premium Table Styling */
         .table-container {
-            background: #2a2c31;
-            border-radius: 16px;
-            padding: 25px;
-            margin-top: 30px;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
-            overflow-x: auto;
+            background: #161b22;
+            border-radius: 20px;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
         }
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
         }
 
         thead {
-            background: #00b4d8;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        th {
+            padding: 20px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+            border-bottom: 1px solid #30363d;
+        }
+
+        td {
+            padding: 18px;
+            border-bottom: 1px solid #30363d;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
             color: #fff;
         }
 
-        th, td {
-            padding: 14px 16px;
-            border-bottom: 1px solid #444;
-            text-align: center;
-        }
-
-        tr:hover {
-            background: #24262b;
-            transition: background 0.3s ease;
-        }
-
-        .btn-warning, .btn-danger {
-            border: none;
-            padding: 7px 14px;
-            border-radius: 8px;
-            font-size: 14px;
-            transition: all 0.3s ease;
+        /* 🔘 Actions Buttons */
+        .btn-action {
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+            text-decoration: none !important;
         }
 
         .btn-warning {
-            background: #f0ad4e;
-            color: #fff;
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.2);
         }
 
         .btn-warning:hover {
-            background: #e6952c;
-        }
-
-        .btn-danger {
-            background: #d9534f;
+            background: #f59e0b;
             color: #fff;
         }
 
+        .btn-danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
         .btn-danger:hover {
-            background: #c9302c;
+            background: #ef4444;
+            color: #fff;
         }
 
-        /* ✅ تنبيهات */
-        .alert {
-            max-width: 600px;
-            margin: 20px auto;
-            border-radius: 10px;
-            font-weight: 600;
-        }
-
-        /* 📱 موبايل */
-        @media (max-width: 768px) {
-            .form-section, .alert {
-                width: 90%;
-            }
-
-            table th, table td {
-                font-size: 14px;
-                padding: 10px;
-            }
+        .alert-modern {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border-radius: 12px;
+            padding: 15px 25px;
+            max-width: 650px;
+            margin: 0 auto 20px;
         }
     </style>
 </head>
@@ -164,58 +182,61 @@
 
     <div class="page-content">
         <div class="container-fluid">
-            <h2 class="page-title"><i data-lucide="folder-plus" class="inline-block w-6 h-6"></i> إدارة الفئات</h2>
+            
+            <h2 class="page-title">
+                <i data-lucide="layout-grid"></i> Category Management
+            </h2>
 
             @if(session()->has('message'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session()->get('message') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="alert-modern d-flex justify-content-between align-items-center animate__animated animate__fadeIn">
+                    <span><i data-lucide="check-circle" class="mr-2"></i> {{ session()->get('message') }}</span>
+                    <button type="button" class="close text-success" data-dismiss="alert">&times;</button>
                 </div>
             @endif
 
             <div class="form-section">
                 <form action="{{ url('add_category') }}" method="POST">
                     @csrf
-                    <div class="form-group mb-3">
-                        <label for="categoryName"><i data-lucide="tag" class="inline-block w-5 h-5"></i> اسم الفئة</label>
-                        <input type="text" name="name" id="categoryName" class="form-control" placeholder="أدخل اسم الفئة..." required>
+                    <div class="form-group mb-4">
+                        <label for="categoryName"><i data-lucide="type" style="width: 18px"></i> Category Name</label>
+                        <input type="text" name="name" id="categoryName" class="form-control" placeholder="Enter category title..." required>
                     </div>
-                    <button type="submit" class="btn btn-primary"><i data-lucide="plus-circle" class="inline-block w-5 h-5"></i> إضافة فئة جديدة</button>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i data-lucide="plus"></i> Create Category
+                    </button>
                 </form>
             </div>
 
-            <div class="table-container mt-4">
-                <table>
+            <div class="table-container container">
+                <table class="text-center">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>اسم الفئة</th>
-                            <th>التحكم</th>
+                            <th>Category Name</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($categories as $key => $category)
                             <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>{{ $category->category_name }}</td>
-                                <td>
-                                    <a href="{{ route('edit_category', $category->id) }}" class="btn btn-warning btn-sm">
-                                        <i data-lucide="edit-3" class="inline-block w-4 h-4"></i> تعديل
+                                <td style="color: #64748b;">{{ $key + 1 }}</td>
+                                <td class="font-weight-bold">{{ $category->category_name }}</td>
+                                <td class="d-flex justify-content-center gap-2">
+                                    <a href="{{ route('edit_category', $category->id) }}" class="btn-action btn-warning">
+                                        <i data-lucide="edit-3" style="width: 14px"></i> Edit
                                     </a>
-                                    <form action="{{ route('delete_category', $category->id) }}" method="POST" class="d-inline delete-form">
+                                    <form action="{{ route('delete_category', $category->id) }}" method="POST" class="delete-form m-0">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i data-lucide="trash-2" class="inline-block w-4 h-4"></i> حذف
+                                        <button type="submit" class="btn-action btn-danger border-0">
+                                            <i data-lucide="trash-2" style="width: 14px"></i> Delete
                                         </button>
                                     </form>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3">🚫 لا توجد فئات حاليًا</td>
+                                <td colspan="3" class="py-5 text-muted">No categories available yet.</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -232,14 +253,15 @@
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 Swal.fire({
-                    title: 'هل أنت متأكد؟',
-                    text: "لن يمكنك التراجع بعد الحذف!",
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: 'نعم، احذفها',
-                    cancelButtonText: 'إلغاء',
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#00b4d8',
+                    confirmButtonColor: '#ef4444',
+                    cancelButtonColor: '#64748b',
+                    confirmButtonText: 'Yes, delete it!',
+                    background: '#161b22',
+                    color: '#fff'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         form.submit();

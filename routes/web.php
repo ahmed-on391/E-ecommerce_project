@@ -56,7 +56,7 @@ Route::get('view_product', [AdminController::class, 'view_product'])->middleware
 Route::delete('delete_product/{id}', [AdminController::class, 'delete_product'])->name('delete_product')->middleware('auth', 'admin');
 
 
-Route::get('update_product/{id}', [AdminController::class, 'update_product'])->middleware('auth', 'admin');
+Route::get('update_product/{slug}', [AdminController::class, 'update_product'])->middleware('auth', 'admin');
 
 Route::post('edit_product/{id}', [AdminController::class, 'edit_product'])->middleware('auth', 'admin');
 
@@ -69,11 +69,23 @@ Route::get('product_search', [AdminController::class, 'product_search'])->middle
 
 Route::get('product_details/{id}', [HomeController::class, 'product_details'])->middleware('auth');
 
-Route::get('add_cart/{id}', [HomeController::class, 'add_cart'])->middleware('auth', 'verified');
+// Route::get('add_cart/{id}', [HomeController::class, 'add_cart'])->middleware('auth', 'verified');
+Route::match(['get','post'], 'add_cart/{id}', [HomeController::class, 'add_cart'])->middleware('auth', 'verified');
+
 
 Route::get('mycart', [HomeController::class, 'mycart'])->middleware('auth', 'verified');
 
 Route::post('confirm_order', [HomeController::class, 'confirm_order'])->middleware('auth', 'verified');
+
+
+Route::get('shop', [HomeController::class, 'shop'])->middleware('auth');
+
+Route::get('why', [HomeController::class, 'why'])->middleware('auth');
+
+Route::get('contact', [HomeController::class, 'contact'])->middleware('auth');
+
+
+
 
 
 

@@ -14,12 +14,20 @@
       <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
         <div class="card h-100 border-0 shadow-sm transition-all" style="border-radius: 25px; overflow: hidden; transition: 0.3s;">
           
-          <div class="position-relative overflow-hidden" style="background: #f8f9fa;">
-            <img src="products/{{ $products->image }}" class="card-img-top" alt="{{ $products->title }}" 
+          {{-- <div class="position-relative overflow-hidden" style="background: #f8f9fa;">
+            <img src="products/{{ $products->image }}" cl ass="card-img-top" alt="{{ $products->title }}" 
                  style="height: 250px; object-fit: cover; transition: 0.5s;">
             
             <span class="position-absolute top-0 end-0 m-3 badge rounded-pill" style="background: #db4566; padding: 8px 15px;">جديد</span>
-          </div>
+          </div> --}}
+          <div class="position-relative overflow-hidden" style="background: #f8f9fa;">
+    <img src="{{ file_exists(public_path('products/' . $products->image)) ? asset('products/' . $products->image) : $products->image }}"
+         class="card-img-top" alt="{{ $products->title }}" 
+         style="height: 250px; object-fit: cover; transition: 0.5s;">
+    
+    <span class="position-absolute top-0 end-0 m-3 badge rounded-pill" style="background: #db4566; padding: 8px 15px;">جديد</span>
+</div>
+
 
           <div class="card-body text-center d-flex flex-column">
             <h5 class="card-title font-weight-bold" style="font-size: 18px; margin-bottom: 10px; color: #333;">
