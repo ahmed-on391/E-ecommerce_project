@@ -62,6 +62,6 @@
 ## ⚙️ التثبيت والتشغيل (Setup & Installation)
 
 1. **نسخ المشروع:**
-   ```bash
-   git clone [https://github.com/your-username/smart-store.git](https://github.com/your-username/smart-store.git)
-   cd smart-store
+```bash
+git clone https://github.com/your-username/smart-store.git
+cd smart-store
