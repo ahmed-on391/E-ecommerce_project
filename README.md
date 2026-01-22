@@ -17,18 +17,11 @@
 ## 💎 العرض البصري (Visual Showcase)
 
 <div align="center">
-  <table border="0">
-    <tr>
-      <td width="50%">
-        <p align="center"><b>🖥️ لوحة الإدارة (Luxury Dark Mode)</b></p>
-        <img src="screenshots/admin_panel.png" width="100%" style="border-radius:15px" alt="Admin Dashboard Preview">
-      </td>
-      <td width="50%">
-        <p align="center"><b>🛍️ واجهة المتجر (Modern Storefront)</b></p>
-        <img src="screenshots/storefront.png" width="100%" style="border-radius:15px" alt="Storefront Preview">
-      </td>
-    </tr>
-  </table>
+
+<img width="1832" height="888" alt="Screenshot_1" src="https://github.com/user-attachments/assets/96e9a5cd-84c0-4b0a-a3a0-e097cc1cbc76" />
+
+
+
 </div>
 
 ---
