@@ -1,5 +1,4 @@
 <div align="center">
-
   <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" width="100" height="100" alt="SmartStore Logo">
 
   # 🚀 SmartStore v1.0
@@ -16,56 +15,46 @@
 
 ## 💎 العرض البصري (Visual Showcase)
 
+### 🖥️ لوحة الإدارة (Luxury Dark Mode)
 <div align="center">
+  <table border="0">
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/96e9a5cd-84c0-4b0a-a3a0-e097cc1cbc76" width="100%"></td>
+      <td><img src="https://github.com/user-attachments/assets/3bd2f1e8-6d04-485a-adb4-1f5e627da5f4" width="100%"></td>
+    </tr>
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/a001439f-163f-4692-a9c3-4f1a55ed0460" width="100%"></td>
+      <td><img src="https://github.com/user-attachments/assets/dab482f9-6bd1-4c91-9aa6-09a90885e586" width="100%"></td>
+    </tr>
+  </table>
+</div>
 
-<img width="1832" height="888" alt="Screenshot_1" src="https://github.com/user-attachments/assets/96e9a5cd-84c0-4b0a-a3a0-e097cc1cbc76" />
+### 🛍️ واجهة المستخدم وتجربة التسوق
+<div align="center">
+  <table border="0">
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/08b9f5c9-333b-423b-91e5-dd67c70278ba" width="100%"></td>
+      <td><img src="https://github.com/user-attachments/assets/5e55e3a2-bb0e-4e6e-8d7c-ea28106b6743" width="100%"></td>
+    </tr>
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/0e9a8840-c89e-4303-a5b3-ebe258846ad0" width="100%"></td>
+      <td><img src="https://github.com/user-attachments/assets/db0aab27-9670-4c05-aafc-4a0959334c1b" width="100%"></td>
+    </tr>
+  </table>
+</div>
 
-<img width="1829" height="876" alt="Screenshot_2" src="https://github.com/user-attachments/assets/3bd2f1e8-6d04-485a-adb4-1f5e627da5f4" />
-
-<img width="1874" height="897" alt="Screenshot_3" src="https://github.com/user-attachments/assets/a001439f-163f-4692-a9c3-4f1a55ed0460" />
-
-<img width="1600" height="873" alt="Screenshot_4" src="https://github.com/user-attachments/assets/dab482f9-6bd1-4c91-9aa6-09a90885e586" />
-
-<img width="1337" height="849" alt="Screenshot_6" src="https://github.com/user-attachments/assets/08b9f5c9-333b-423b-91e5-dd67c70278ba" />
-
-<img width="1549" height="818" alt="image" src="https://github.com/user-attachments/assets/5e55e3a2-bb0e-4e6e-8d7c-ea28106b6743" />
-
-<img width="1755" height="897" alt="image" src="https://github.com/user-attachments/assets/0e9a8840-c89e-4303-a5b3-ebe258846ad0" />
-
-<img width="1485" height="927" alt="image" src="https://github.com/user-attachments/assets/db0aab27-9670-4c05-aafc-4a0959334c1b" />
-
-<img width="1875" height="782" alt="image" src="https://github.com/user-attachments/assets/3b9fe426-e795-4e41-b264-63d52acc7460" />
-
-<img width="1660" height="826" alt="image" src="https://github.com/user-attachments/assets/72e4d842-c154-40f0-89e9-24cb4ba2d229" />
-
-<img width="1478" height="682" alt="image" src="https://github.com/user-attachments/assets/9aa80685-cf20-4f9d-ab77-df735870ba5c" />
-
-<img width="1809" height="793" alt="image" src="https://github.com/user-attachments/assets/a8d8d4fc-318d-4aeb-b85c-1a7b785e1201" />
-
-<img width="782" height="633" alt="image" src="https://github.com/user-attachments/assets/e0792b22-497c-4f7f-b997-92e3bda537ba" />
-
-<img width="1832" height="545" alt="image" src="https://github.com/user-attachments/assets/93f04068-c6ba-4685-9d26-8a59ebacc60b" />
-
-<img width="929" height="838" alt="image" src="https://github.com/user-attachments/assets/57cb90a3-1ef4-4129-928c-b3be70e76419" />
-
-<img width="1539" height="889" alt="image" src="https://github.com/user-attachments/assets/a8daf267-7051-4bb2-84be-d36324f4bb57" />
-
-<img width="1459" height="835" alt="image" src="https://github.com/user-attachments/assets/b75457ce-754a-41d2-889a-17a34afee7bc" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### 💳 المدفوعات والعمليات المتقدمة (Stripe & Orders)
+<div align="center">
+  <table border="0">
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/3b9fe426-e795-4e41-b264-63d52acc7460" width="100%"></td>
+      <td><img src="https://github.com/user-attachments/assets/72e4d842-c154-40f0-89e9-24cb4ba2d229" width="100%"></td>
+    </tr>
+    <tr>
+      <td><img src="https://github.com/user-attachments/assets/a8d8d4fc-318d-4aeb-b85c-1a7b785e1201" width="100%"></td>
+      <td><img src="https://github.com/user-attachments/assets/e0792b22-497c-4f7f-b997-92e3bda537ba" width="100%"></td>
+    </tr>
+  </table>
 </div>
 
 ---
@@ -74,20 +63,17 @@
 
 ### **1. نظام إدارة المخزون (Back-End Power)**
 - **Multi-Authentication:** نظام تسجيل دخول مزدوج (Admin & User) باستخدام **Laravel Breeze**.
-- **Hybrid Image Logic:** معالج صور ذكي يقبل الصور المحلية (`public/products`) وروابط الـ URLs الخارجية (Faker) دون أخطاء.
+- **Hybrid Image Logic:** معالج صور ذكي يقبل الصور المحلية والروابط الخارجية (Faker) دون أخطاء.
 - **Auto-Slug Generation:** توليد روابط فريدة للمنتجات تلقائياً لتحسين الـ SEO.
-- **Stock Guard:** تنبيهات بصرية ذكية عند انخفاض الكميات في المخزن.
 
 ### **2. دورة حياة الطلب والدفع (Workflow)**
-- **Cart System:** سلة مشتريات ديناميكية مرتبطة بقاعدة البيانات باستخدام **Foreign Keys**.
 - **Stripe Integration:** ربط كامل لبوابة الدفع العالمية **Stripe** لإتمام المعاملات بأمان.
 - **PDF Invoices:** إمكانية تحميل وطباعة فواتير الطلبات بصيغة **PDF** برمجياً.
 - **Email System:** تفعيل الـ **Email Verification** ونظام استعادة كلمة المرور عبر SMTP.
 
 ### **3. تجربة المستخدم (Premium UI/UX)**
-- **Luxury Interface:** واجهة أدمن Dark Mode احترافية مصممة بمساعدة **Gemini** لضمان الفخامة.
-- **Real-time Feedback:** استخدام **SweetAlert2** و **Toastr** للتفاعل الحي مع المستخدم.
-- **Interactive Design:** تأثيرات حركية (Hover & Zoom) باستخدام CSS3 و **Lucide Icons**.
+- **Luxury Interface:** واجهة أدمن Dark Mode احترافية مصممة بمساعدة **Gemini**.
+- **Real-time Feedback:** استخدام **SweetAlert2** و **Toastr** للتفاعل الحي.
 
 ---
 
@@ -98,8 +84,7 @@
 | **Laravel 10** | المحرك الأساسي (Backend Framework) |
 | **MySQL** | إدارة قواعد البيانات والعلاقات (Foreign Keys) |
 | **Stripe API** | معالجة المدفوعات الإلكترونية |
-| **DomPDF** | توليد فواتير الـ PDF من ملفات الـ Blade |
-| **Bootstrap 5** | الهيكلة المتجاوبة (Responsive Design) |
+| **DomPDF** | توليد فواتير الـ PDF |
 
 ---
 
