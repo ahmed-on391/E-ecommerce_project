@@ -97,7 +97,7 @@
 
 ```bash
 # 1. استنساخ المستودع
-git clone [https://github.com/yourusername/smartstore.git](https://github.com/yourusername/smartstore.git)
+git clone [[https://github.com/yourusername/smartstore](https://github.com/ahmed-on391/E-ecommerce_project.git](https://github.com/yourusername/smartstore.git)
 
 # 2. تثبيت الملحقات
 composer install && npm install
