@@ -113,6 +113,4 @@ php artisan migrate --seed
 php artisan serve
 
 
-<div align="center">
-  Made with ❤️ by <b>Your Name</b>
-</div>
+
