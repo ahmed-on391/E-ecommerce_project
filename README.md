@@ -65,10 +65,21 @@
       <td><p align="center"><b>تأكيد الحذف (SweetAlert2)</b></p><img src="https://github.com/user-attachments/assets/9aa80685-cf20-4f9d-ab77-df735870ba5c" width="100%"></td>
       <td><p align="center"><b>صفحة تسجيل الدخول</b></p><img src="https://github.com/user-attachments/assets/93f04068-c6ba-4685-9d26-8a59ebacc60b" width="100%"></td>
     </tr>
+       <tr>
+      <td><p align="center"><b>تأكيد الحذف (SweetAlert2)</b></p><img src="https://github.com/user-attachments/assets/57cb90a3-1ef4-4129-928c-b3be70e7641" width="100%"></td>
+      <td><p align="center"><b>صفحة تسجيل الدخول</b></p><img src="https://github.com/user-attachments/assets/a8daf267-7051-4bb2-84be-d36324f4bb57" width="100%"></td>
+      <td><p align="center"><b>صفحة تسجيل الدخول</b></p><img src="https://github.com/user-attachments/assets/b75457ce-754a-41d2-889a-17a34afee7bc" width="100%"></td>
+           
+    </tr>
   </table>
 </div>
 
 ---
+<img width="929" height="838" alt="image" src="9" />
+
+<img width="1539" height="889" alt="image" src="" />
+
+<img width="1459" height="835" alt="image" src="" />
 
 ## ⚡ المميزات البرمجية (Core Features)
 
